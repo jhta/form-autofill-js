@@ -3,7 +3,7 @@
 Tool for auto filling html forms based on the fake data generator: [casual.js](https://github.com/boo1ean/casual)
 ![gif](https://github.com/jhta/form-autofill-js/blob/master/1.gif)
 
-The Tool identify the html component based on the `name` and `type` params and fill it with a random pair from the object `casual`o
+The Tool identifies the html component based on the `name` and `type` params and fill it with a random pair from the object `casual`.
 
 ## How to install
 
@@ -15,7 +15,7 @@ or
 
 ## how to use
 
-For fill from javascript
+Fill from javascript
 ```` javascript
 import AutoFill from 'form-autofill-js'
 
