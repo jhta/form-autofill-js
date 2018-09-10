@@ -6,6 +6,32 @@ const _EXCLUDED = [
   'hidden'
 ]
 
+const containerButtonStyle = `
+  position: fixed;
+  background: white;
+  padding: 1rem;
+  top: 50px;
+  right: 50px;
+  z-index: 99999;
+  border: 1px solid black;
+` 
+
+const buttonStyle = `
+  padding: 1rem;
+  font-size: 16px;
+  background: #ddd;
+  border: 1px solid black;
+  cursor: pointer;
+`
+
+const isExcluded = (el) => _EXCLUDED.includes(el)
+
+const _ADITIONAL_PARAMS = {
+  zip: () => casual.zip(6),
+  lastname: () => casual.lastname,
+  firstname: () => casual.firstname
+}
+
 const isFunction = (f) => f instanceof Function
 
 function findInputElements () {
@@ -21,27 +47,45 @@ function findInputElements () {
   return [...inputs, ...textAreas] 
 }
 
-function fill (elements = []) {
+function fillElements (elements = []) {
   if (!elements.length) {
     console.warning('cannot find DOM input elements')
     return null;
   }
 
   elements.forEach(el => {
-    if (!_EXCLUDED[el.type]) {
+    if (!isExcluded(el.type)) {
       const value = casual[el.name]
-      if (value) {
+      if (_ADITIONAL_PARAMS[el.name]) {
+        el.value = _ADITIONAL_PARAMS[el.name]() 
+      } else if (value) {
         el.value = value
+      } else {
+        el. value = (casual[el.type]) ? casual[el.type] : ''
       }
     }
   })
 }
 
+function fill () {
+  const elements = findInputElements()
+  fillElements(elements)
+}
+
+
+function tool () {
+  const button = document.createElement('button')
+  button.textContent = 'Autofill'
+  button.setAttribute('style', buttonStyle)
+  button.onclick = () => fill() 
+
+  const container = document.createElement('div')
+  container.setAttribute('style', containerButtonStyle)
+  container.appendChild(button)
+  document.querySelector('body').appendChild(container)
+}
+
 module.exports = {
-  run: () => {
-    const elements = findInputElements()
-    console.log(elements)
-    fill(elements)
-    //console.log('hello workd')
-  }
+  fill,
+  tool
 }
