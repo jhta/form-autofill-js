@@ -14,7 +14,7 @@ const containerButtonStyle = `
   right: 50px;
   z-index: 99999;
   border: 1px solid black;
-` 
+`
 
 const buttonStyle = `
   padding: 1rem;
@@ -44,7 +44,7 @@ function findInputElements () {
   const selects = document.querySelectorAll('form select')
   const textAreas = document.querySelectorAll('form textArea')
 
-  return [...inputs, ...textAreas] 
+  return [...inputs, ...textAreas]
 }
 
 function fillElements (elements = []) {
@@ -57,7 +57,7 @@ function fillElements (elements = []) {
     if (!isExcluded(el.type)) {
       const value = casual[el.name]
       if (_ADITIONAL_PARAMS[el.name]) {
-        el.value = _ADITIONAL_PARAMS[el.name]() 
+        el.value = _ADITIONAL_PARAMS[el.name]()
       } else if (value) {
         el.value = value
       } else {
@@ -67,17 +67,17 @@ function fillElements (elements = []) {
   })
 }
 
-function fill () {
+const fill = () => {
   const elements = findInputElements()
   fillElements(elements)
 }
 
 
-function tool () {
+const tool = () => {
   const button = document.createElement('button')
   button.textContent = 'Autofill'
   button.setAttribute('style', buttonStyle)
-  button.onclick = () => fill() 
+  button.onclick = () => fill()
 
   const container = document.createElement('div')
   container.setAttribute('style', containerButtonStyle)
