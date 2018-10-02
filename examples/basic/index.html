@@ -18,21 +18,31 @@
 		                    <div>
 			                      <input id="element_1" name="name" class="element text medium" type="text" maxlength="255" value=""/> 
 		                    </div> 
-		                </li>		<li id="li_2" >
+		                </li>
+                    <li id="li_2" >
 		                    <label class="description" for="element_2">Email </label>
 		                    <div>
 			                      <input id="element_2" name="email" class="element text medium" type="text" maxlength="255" value=""/> 
 		                    </div> 
-		                </li>		<li id="li_3" >
+		                </li>
+	                  <li id="li_3" >
 		                    <label class="description" for="element_3">Phone </label>
 		                    <div>
 			                      <input id="element_3" name="phone" class="element text medium" type="text" maxlength="255" value=""/> 
 		                    </div> 
-		                </li>		<li id="li_4" >
+		                </li>
+	                  <li id="li_4" >
 		                    <label class="description" for="element_4">Address </label>
 		                    <div>
 			                      <input id="element_4" name="address" class="element text medium" type="text" maxlength="255" value=""/> 
 		                    </div> 
+		                </li>
+
+                    <li id="li_5" >
+		                    <label class="description" for="element_5">Additional information </label>
+		                    <div>
+			                      <input id="element_5" name="additional" class="element text medium" type="text" maxlength="255" value=""/>
+		                    </div>
 		                </li>
 			              
 					          <li class="buttons">
@@ -48,7 +58,9 @@
 
     <script>
      window.onload = function () {
-         Autofill.tool()
+         Autofill.tool({
+             'additional': 'Field filled with default value'
+         });
      }
     </script>
 </html>
