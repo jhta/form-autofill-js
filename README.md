@@ -44,3 +44,8 @@ import { tool } from 'form-autofill-js'
 Autofill.tool()
 ````
 
+# Add Chrome extension to Chrome
+- Clone repo <br/>
+- Go on chrome://extensions/ <br/>
+- Enable <b>Developer Mode</b><br/>
+- Load unpacked (to the directory)
