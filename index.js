@@ -47,7 +47,7 @@ function findInputElements () {
   return [...inputs, ...textAreas]
 }
 
-function fillElements (elements = []) {
+function fillElements (elements = [], defaultValues = {}) {
   if (!elements.length) {
     console.warning('cannot find DOM input elements')
     return null;
@@ -56,7 +56,10 @@ function fillElements (elements = []) {
   elements.forEach(el => {
     if (!isExcluded(el.type)) {
       const value = casual[el.name]
-      if (_ADITIONAL_PARAMS[el.name]) {
+
+      if (el.name in defaultValues) {
+        el.value = defaultValues[el.name]
+      } else if (_ADITIONAL_PARAMS[el.name]) {
         el.value = _ADITIONAL_PARAMS[el.name]()
       } else if (value) {
         el.value = value
@@ -67,17 +70,16 @@ function fillElements (elements = []) {
   })
 }
 
-const fill = () => {
+const fill = (defaultValues = {}) => {
   const elements = findInputElements()
-  fillElements(elements)
+  fillElements(elements, defaultValues)
 }
 
-
-const tool = () => {
+const tool = (defaultValues = {}) => {
   const button = document.createElement('button')
   button.textContent = 'Autofill'
   button.setAttribute('style', buttonStyle)
-  button.onclick = () => fill()
+  button.onclick = () => fill(defaultValues)
 
   const container = document.createElement('div')
   container.setAttribute('style', containerButtonStyle)
